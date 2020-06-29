@@ -1,0 +1,155 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin: 0px;
+	padding: 0px;
+}
+body{
+	width: 100%;
+	background-color: #F3F3F3;
+}
+.logo{
+	width: 200px;
+	float: left;
+}
+.header-wrap{
+	margin: 0 auto;
+	width: 100%;
+	height: 100px;
+	background-color:#00BCFE;
+}
+.header-wrap div{
+	display: inline-block;
+}
+.search-form{
+	width: 500px;
+	height: 100px;
+	
+}
+#search-input{
+	height: 32px;
+	width: 200px;
+	margin: 22px 0 0 30px;
+}
+#button-search{
+	margin: 35px 0 auto ;
+	background-color: white;/* Green */
+    border: none;
+    color: #00BCFE;
+    padding: 8px 15px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+	font-family:"等线";
+}
+.list{
+	height: 100px;
+	float: right;
+	width: 550px;
+	
+}
+.list ul{
+	margin: 35px auto;
+	
+}
+.list ul li{
+	display: inline;
+	margin: 10px;
+}
+.list ul li a{
+	font-size: 20px;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+}
+.container{
+	display:block;
+	background-color: white;
+	margin: 10px auto;
+	width: 80%;
+	height: 600px;
+	padding: 20px 30px 160px 30px;
+	box-sizing: border-box;
+}
+.container h2{
+	
+}
+.container h5{
+	font-weight: normal;
+	color: gray;
+}
+.container p{
+	line-height: 28px;
+}
+.comment-count{
+	display: block;
+	margin: auto auto 0 0;
+}
+.container-comment{
+	height: 50px;
+}
+
+#input-comment{
+	display:inline-block;
+	width: 85%;
+	height: 50px;
+	margin: 0 auto;
+}
+#button-comment{
+	display:inline-block;
+	margin: 0 auto;
+	background-color: #00BCFE;/* Green */
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+#input-write{
+	display: block;
+	margin: 0 auto;
+	width: 100%;
+	height: 500px;
+}
+#button-write{
+	float: right;
+	margin: 10px  auto;
+	background-color: #00BCFE;/* Green */
+    border: none;
+    color: white;
+    padding: 15px 30px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+}
+#log-in{
+	display: block;
+	margin: 40px auto;
+}
+.item-box{
+	display:block;
+	background-color: white;
+	margin: 10px auto;
+	width: 80%;
+	height: 200px;
+	padding: 20px 30px 160px 30px;
+	box-sizing: border-box;
+}
+.item-box h5{
+	font-weight: normal;
+	color: gray;
+	line-height: 28px;
+}
+.item-box h3 a{
+	font-weight: normal;
+	text-decoration: none;
+	color: black;
+	font-weight: bold;
+	line-height: 30px;
+}
+.personal form ul li{
+	margin: 10px;
+	list-style: none;
+	font-size: 18px;
+}
