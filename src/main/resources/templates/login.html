@@ -1,3 +1,88 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/blog.css" type="text/css">
+    <title>用户登录</title>
+    <style>
+        .hide{
+            display: none;
+        }
+        #modal p {
+            margin-left:80px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <div class="header-wrap">
+        <div class="logo">
+            <a href="#">
+                <img src="/images/blog.jpg" width="130">
+            </a>
+        </div>
+        <div class="search-form">
+            <form  action="" style="width: 500px;height: 100px;display: inline;margin: 30px auto">
+                <input type="text" id="search-input">
+                <button id="button-search">搜索</button>
+            </form>
+        </div>
+        <div class="list">
+            <ul>
+                <li>
+                    <a href="write.html">写博客</a>
+                </li>
+                <li>
+                    <a href="index.html">主页</a>
+                </li>
+                <li>
+                    <a href="personal_center.html">个人中心</a>
+                </li>
+                <li>
+                    <a href="login.html">登录</a>
+                </li>
+                <li>
+                    <a href="regist.html">注册</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="personal">
+        <form action="/login" name="logindata" method="post" style="width: 98%" onsubmit="return loginCheck()">
+            <ul>
+                <li>
+                    用户名  <input name="userid" type="text">
+                </li>
+                <li>
+                    密码 <input name="userpassword" type="password"> <br>
+                </li>
+            </ul>
+            <input id="button-write" type="submit" value="登录" >
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+    function loginCheck()
+    {
+        for(var i=0;i<document.logindata.elements.length-1;i++)
+        {
+            if(document.logindata.elements[i].value=="")
+            {
+                alert("请完善所有信息！");
+                document.logindata.elements[i].focus();
+                return false;
+            }
+        }
+        return true;
+    }
+</script>
+</body>
+</html>
+
+
 <html>
     <head>
         <meta charset="UTF-8">

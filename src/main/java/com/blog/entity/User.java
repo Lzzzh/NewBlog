@@ -1,4 +1,4 @@
-package com.blog.bean;
+package com.blog.entity;
 
 
 public class User {
@@ -7,7 +7,7 @@ public class User {
     private String userId;
     private String userPassword;
     private String userName;
-    private boolean sex;
+    private int sex;
     private String introduction;
     private String school;
 
@@ -43,11 +43,11 @@ public class User {
         this.userName = userName;
     }
 
-    public boolean isSex() {
+    public int isSex() {
         return sex;
     }
 
-    public void setSex(boolean sex) {
+    public void setSex(int sex) {
         this.sex = sex;
     }
 

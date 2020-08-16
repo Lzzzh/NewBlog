@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.blog.entity.User" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="userName" property="userName" jdbcType="VARCHAR" />
+        <result column="userPassword" property="userPassword" jdbcType="VARCHAR" />
+    </resultMap>
+
+<!--登录查询用户是否存在    -->
+    <select id="ifUser" resultType="int" parameterType="com.blog.entity.User">
+        select
+        count(*)
+        from user
+        where
+        userId = #{userId}
+    </select>
+
+<!--添加用户    -->
+    <insert id="addUser" parameterType="com.blog.entity.User">
+        insert into user (userId, userName, userPassword, sex)
+        values (#{userId, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR}, #{userPassword, jdbcType=VARCHAR}, #{sex, jdbcType=TINYINT})
+    </insert>
+</mapper>

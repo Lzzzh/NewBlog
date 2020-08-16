@@ -5,29 +5,6 @@
 <link rel="stylesheet" href="/css/blog.css" type="text/css">
 <title>my_blog</title>
 <style>
-	.hide{
-		display: none;
-	}
-	.c1{
-		position: fixed;
-		top:0;
-		bottom: 0;
-		left:0;
-		right: 0;
-		background: rgba(0,0,0,.5);
-		z-index: 2;
-	}
-	.c2{
-		background-color: white;
-		position: fixed;
-		width: 400px;
-		height: 300px;
-		top:50%;
-		left: 50%;
-		z-index: 3;
-		margin-top: -150px;
-		margin-left: -200px;
-	}
 	#modal p {
 		margin-left:80px;
 	}
@@ -54,7 +31,7 @@
 						<a href="write.html">写博客</a>
 					</li>
 					<li>
-						<a href="host.html">主页</a>
+						<a href="index.html">主页</a>
 					</li>
 					<li>
 						<a href="personal_center.html">个人中心</a>
@@ -99,32 +76,13 @@
 			阅读量 <span>10w+</span>
 		</div>
 	</div>
-<div class="container-comment">
+	<div class="container-comment">
 		<form action="" style="margin: 0 auto;width: 80%">
 			<input type="text" id="input-comment" placeholder="说点什么吧">
 			<button id="button-comment">发表评论</button>
 		</form>
 	</div>
-	<div id="shade" class="c1 hide"></div>
-<div id="modal" class="c2 hide">
-	<div id="log-in">
-    <p>用户：<input type="text" style="margin: 10px auto;"></p>
-    <p>密码：<input type="password" style="margin: 10px auto;"/></p>
-<p>
-    <input type="button" value="确定" style="margin: 0 20px 30px auto;" onclick="Hide();">
-    <input type="button" value="取消" onclick="Hide();">
-</p>
-		</div>
-    </div>
-<script>
-    function Show(){
-        document.getElementById('shade').classList.remove('hide');
-        document.getElementById('modal').classList.remove('hide');
-    }
-     function Hide(){
-        document.getElementById('shade').classList.add('hide');
-        document.getElementById('modal').classList.add('hide');
-    }
-</script>
+
+
 </body>
 </html>

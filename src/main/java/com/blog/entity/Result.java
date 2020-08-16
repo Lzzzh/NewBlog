@@ -1,4 +1,4 @@
-package com.blog.bean;
+package com.blog.entity;
 
 public class Result<T>{
     private String message;

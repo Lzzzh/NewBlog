@@ -1,14 +1,97 @@
+<!doctype html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>用户注册</title>
-    </head>
-    <body>
-    <form action="/user/regist" method="post">
-        用户名:<input name="userId" type="text"><br>
-        昵称:<input name="userName" type="text"><br>
-        密码:<input name="userPassword" type="password"> <br>
-        <input type="submit" value="注册">
-    </form>
-    </body>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/css/blog.css" type="text/css">
+    <title>用户注册</title>
+    <style>
+        .hide{
+            display: none;
+        }
+        #modal p {
+            margin-left:80px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <div class="header-wrap">
+        <div class="logo">
+            <a href="#">
+                <img src="/images/blog.jpg" width="130">
+            </a>
+        </div>
+        <div class="search-form">
+            <form  action="" style="width: 500px;height: 100px;display: inline;margin: 30px auto">
+                <input type="text" id="search-input">
+                <button id="button-search">搜索</button>
+            </form>
+        </div>
+        <div class="list">
+            <ul>
+                <li>
+                    <a href="write.html">写博客</a>
+                </li>
+                <li>
+                    <a href="index.html">主页</a>
+                </li>
+                <li>
+                    <a href="personal_center.html">个人中心</a>
+                </li>
+                <li>
+                    <a href="login.html">登录</a>
+                </li>
+                <li>
+                    <a href="regist.html">注册</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="personal">
+        <form action="/regist" name="registdata" method="post" style="width: 98%"  onsubmit="return registCheck()">
+            <ul>
+                <li>
+                    用户名  <input name="userid" type="text">  性别  男<input name="sex" type="radio" value=1 checked="checked"/>女<input name="sex" type="radio" value=0 />
+                </li>
+                <li>
+                    昵称 <input name="username" type="text"><br>
+                </li>
+                <li>
+                    密码 <input name="userpassword" type="password"> <br>
+                </li>
+                <li>
+                    确认密码 <input name="userpassword_check"  type="password"> <br>
+                </li>
+            </ul>
+            <input id="button-write" type="submit" value="注册">
+        </form>
+    </div>
+</div>
+<script type="text/javascript">
+
+    function registCheck()
+    {
+        for(var i=0;i<document.registdata.elements.length-1;i++)
+        {
+            if(document.registdata.elements[i].value==="")
+            {
+                alert("请完善所有信息！");
+                return false;
+            }
+        }
+        if (document.registdata.userpassword.value !== document.registdata.userpassword_check.value){
+            alert("两次输入的密码不一致！");
+            return false;
+        }
+        alert("注册成功！请登录");
+        return true;
+
+    }
+
+</script>
+</body>
 </html>
+
