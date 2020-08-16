@@ -15,7 +15,14 @@
         where
         userId = #{userId}
     </select>
-
+<!--验证用户密码-->
+    <select id="ifPassword" resultType="int" parameterType="com.blog.entity.User">
+        select
+        count(*)
+        from user
+        where
+        userId = #{userId} and userPassword = #{userPassword}
+    </select>
 <!--添加用户    -->
     <insert id="addUser" parameterType="com.blog.entity.User">
         insert into user (userId, userName, userPassword, sex)

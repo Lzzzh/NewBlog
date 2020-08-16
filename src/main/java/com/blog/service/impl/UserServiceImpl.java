@@ -23,6 +23,10 @@ public class UserServiceImpl implements UserService {
         return userMapper.ifUser(userId) == 0;
     }
 
+    public boolean ifPassword(String userId, String userPassword) {
+        return userMapper.ifPassword(userId, userPassword) == 1;
+    }
+
 }
 
 

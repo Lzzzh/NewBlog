@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,6 +22,26 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping("/login")
+    public ModelAndView userlogin(@RequestParam("userid") String userId,
+                                  @RequestParam("userpassword") String userPassword,
+                                  HttpServletResponse response,
+                                  HttpServletRequest request) throws IOException, ServletException {
+        ModelAndView mv = new ModelAndView();
+        if (userService.ifPassword(userId, userPassword)){
+            mv.addObject("ifPassword", userId);
+            mv.setViewName("index");
+            return mv;
+        }else {
+            response.setContentType("text/html; charset=utf-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script language='javascript'>");
+            out.println("alert('用户名或密码错误！');");
+            out.print("</script>");
+            mv.setViewName("login");
+            return mv;
+        }
+    }
     @RequestMapping("/regist")
     public ModelAndView addUser(@RequestParam("userid") String userId,
                                 @RequestParam("username") String username,
