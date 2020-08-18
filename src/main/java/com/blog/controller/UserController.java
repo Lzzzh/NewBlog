@@ -4,6 +4,7 @@ import com.blog.entity.User;
 import com.blog.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -23,25 +25,29 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("/login")
-    public ModelAndView userlogin(@RequestParam("userid") String userId,
+    public String userlogin(@RequestParam("userid") String userId,
                                   @RequestParam("userpassword") String userPassword,
-                                  HttpServletResponse response,
-                                  HttpServletRequest request) throws IOException, ServletException {
-        ModelAndView mv = new ModelAndView();
+                                  HttpServletResponse response, HttpSession session) throws IOException, ServletException {
+//        ModelAndView modelAndView = new ModelAndView();
+        response.setContentType("text/html; charset=utf-8");
+        PrintWriter out = response.getWriter();
         if (userService.ifPassword(userId, userPassword)){
-            mv.addObject("ifPassword", userId);
-            mv.setViewName("index");
-            return mv;
+            out.println("<script language='javascript'>");
+            out.println("alert('登录成功！');");
+            out.print("</script>");
+            //model.addAttribute("user", user);
+//            modelAndView.setViewName("index");
+            session.setAttribute("loginUser", userId);
+            return "index";
         }else {
-            response.setContentType("text/html; charset=utf-8");
-            PrintWriter out = response.getWriter();
             out.println("<script language='javascript'>");
             out.println("alert('用户名或密码错误！');");
             out.print("</script>");
-            mv.setViewName("login");
-            return mv;
+//            modelAndView.setViewName("regist");
+            return "login";
         }
     }
+
     @RequestMapping("/regist")
     public ModelAndView addUser(@RequestParam("userid") String userId,
                                 @RequestParam("username") String username,
@@ -65,7 +71,11 @@ public class UserController {
             user.setUserName(username);
             user.setUserPassword(userPassword);
             userService.addUser(user);
-            mv.setViewName("index");
+            PrintWriter out = response.getWriter();
+            out.println("<script language='javascript'>");
+            out.println("alert('注册成功请登录！');");
+            out.print("</script>");
+            mv.setViewName("login");
             return mv;
         }
         mv.setViewName("regist");

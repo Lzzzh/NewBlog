@@ -1,6 +1,5 @@
 package com.blog.service;
 
-import com.blog.entity.Result;
 import com.blog.entity.User;
 
 public interface UserService {
