@@ -31,19 +31,16 @@
 			<div class="list">
 				<ul>
 					<li>
-						<a href="write.html">写博客</a>
+						<a href="write">写博客</a>
 					</li>
 					<li>
-						<a href="index.html">主页</a>
+						<a href="index">主页</a>
 					</li>
 					<li>
-						<a href="personal_center.html">个人中心</a>
+						<a href="personal_center">个人中心</a>
 					</li>
 					<li>
-						<a href="#">登录</a>
-					</li>
-					<li>
-						<a href="#">注册</a>
+						<a th:text="'你好，' + ${session.loginUser}"></a>
 					</li>
 				</ul>
 			</div>

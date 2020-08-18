@@ -5,7 +5,7 @@
 
 <generatorConfiguration>
     <!-- 指定数据库驱动的jdbc驱动jar包的位置 -->
-    <classPathEntry location="/Users/haoge/apache-maven-3.6.3/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar" />
+<!--    <classPathEntry location="/Users/haoge/apache-maven-3.6.3/repository/mysql/mysql-connector-java/5.1.30/mysql-connector-java-5.1.30.jar" />-->
 
     <!-- <context id="mysql" defaultModelType="hierarchical" targetRuntime="MyBatis3Simple" >-->
     <context id="Tables" targetRuntime="MyBatis3">
@@ -42,26 +42,26 @@
         </javaTypeResolver>
 
         <!-- 生成实体的位置 -->
-        <javaModelGenerator targetPackage="com.hwqh.stockservice.model" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.blog.entity" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaModelGenerator>
 
         <!-- 生成 Mapper.xml文件位置的位置 -->
-        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="src/main/resources/mapper">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!-- 生成 Mapper 的实体类的位置 -->
-        <javaClientGenerator targetPackage="com.hwqh.stockservice.mapper" type="XMLMAPPER" targetProject="src/main/java">
+        <javaClientGenerator targetPackage="com.blog.mapper" type="XMLMAPPER" targetProject="src/main/java">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!-- 设置数据库的表名和实体类名 -->
-        <table schema="nn" tableName="stock_market" enableSelectByPrimaryKey="true"
-               domainObjectName="StockMarket" enableCountByExample="false"
-               enableDeleteByExample="false" enableSelectByExample="false"
-               enableUpdateByExample="false">
-        </table>
+<!--        <table schema="blog" tableName="stock_market" enableSelectByPrimaryKey="true"-->
+<!--               domainObjectName="StockMarket" enableCountByExample="false"-->
+<!--               enableDeleteByExample="false" enableSelectByExample="false"-->
+<!--               enableUpdateByExample="false">-->
+<!--        </table>-->
 
     </context>
 

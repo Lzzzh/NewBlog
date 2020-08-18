@@ -4,29 +4,6 @@
 <link rel="stylesheet" href="/css/blog.css" type="text/css">
 <title>写博客</title>
 <style>
-	.hide{
-		display: none;
-	}
-	.c1{
-		position: fixed;
-		top:0;
-		bottom: 0;
-		left:0;
-		right: 0;
-		background: rgba(0,0,0,.5);
-		z-index: 2;
-	}
-	.c2{
-		background-color: white;
-		position: fixed;
-		width: 400px;
-		height: 300px;
-		top:50%;
-		left: 50%;
-		z-index: 3;
-		margin-top: -150px;
-		margin-left: -200px;
-	}
 	#modal p {
 		margin-left:80px;
 	}
@@ -50,19 +27,16 @@
 			<div class="list">
 				<ul>
 					<li>
-						<a href="write.html">写博客</a>
+						<a href="write">写博客</a>
 					</li>
 					<li>
-						<a href="index.html">主页</a>
+						<a href="index">主页</a>
 					</li>
 					<li>
-						<a href="personal_center.html">个人中心</a>
+						<a href="personal_center">个人中心</a>
 					</li>
 					<li>
-						<a href="#" onClick="Show()">登录</a>
-					</li>
-					<li>
-						<a href="#" onClick="Show()">注册</a>
+						<a th:text="'你好，' +${session.loginUser}"></a>
 					</li>
 				</ul>
 			</div>
@@ -70,33 +44,13 @@
 	</div>
 	<div class="container">
 		<div class="write">
-			<form action="" style="width: 98%">
-				<input type="text" id="input-write" placeholder="写点什么吧">
-				<button id="button-write">发表</button>
+			<form action="blog/addblog" method="post" style="width: 98%">
+				<input name="blogtitle" type="text" id="input-title" placeholder="标题" >
+				<input name="blogtext" type="text" id="input-write" placeholder="写点什么吧" >
+				<button id="button-write" type="submit">发表</button>
 			</form>
 		</div>
 	</div>
 
-<div id="shade" class="c1 hide"></div>
-<div id="modal" class="c2 hide">
-	<div id="log-in">
-    <p>用户：<input type="text" style="margin: 10px auto;"></p>
-    <p>密码：<input type="password" style="margin: 10px auto;"/></p>
-<p>
-    <input type="button" value="确定" style="margin: 0 20px 30px auto;" onclick="Hide();">
-    <input type="button" value="取消" onclick="Hide();">
-</p>
-		</div>
-    </div>
-<script>
-    function Show(){
-        document.getElementById('shade').classList.remove('hide');
-        document.getElementById('modal').classList.remove('hide');
-    }
-     function Hide(){
-        document.getElementById('shade').classList.add('hide');
-        document.getElementById('modal').classList.add('hide');
-    }
-</script>
 </body>
 </html>

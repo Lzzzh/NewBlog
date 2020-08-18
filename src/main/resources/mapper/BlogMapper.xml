@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.blog.mapper.BlogMapper">
+
+<!--    插入新博客-->
+    <insert id="insertBlog" parameterType="com.blog.entity.Blog">
+        insert into
+        blog (userId, blogTitle, blogText, dateTime)
+        values (#{userId, jdbcType=VARCHAR}, #{blogTitle, jdbcType=VARCHAR}, #{blogText, jdbcType=VARCHAR}, #{dateTime, jdbcType=TIMESTAMP})
+    </insert>
+<!--    展示博客列表-->
+    <select id="getBlogList" resultType="com.blog.entity.Blog">
+        select * from
+        blog
+        order by
+        dateTime
+        limit 10
+    </select>
+
+<!--    获取具体博客-->
+    <select id="getOneBlog" resultType="com.blog.entity.Blog" parameterType="com.blog.entity.Blog">
+        select * from
+        blog
+        where
+        dateTime = #{dateTime}
+        limit 1
+    </select>
+</mapper>
