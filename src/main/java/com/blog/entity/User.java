@@ -3,21 +3,10 @@ package com.blog.entity;
 
 public class User {
 
-    private int id;
     private String userId;
     private String userPassword;
-    private String userName;
-    private int sex;
     private String introduction;
     private String school;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getUserId() {
         return userId;
@@ -33,22 +22,6 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public int isSex() {
-        return sex;
-    }
-
-    public void setSex(int sex) {
-        this.sex = sex;
     }
 
     public String getIntroduction() {

@@ -17,10 +17,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -43,10 +45,13 @@ public class BlogController {
     }
 
     @RequestMapping("/addblog")
-    public String addBlog(@RequestParam("blogtitle") String blogTitle,
-            @RequestParam("blogtext") String blogText,
-                          HttpServletRequest request) {
-        if (!blogText.equals("") && request.getSession(false) != null) {
+    public void addBlog(@RequestParam("blogtitle") String blogTitle,
+                          @RequestParam("blogtext") String blogText,
+                          HttpServletRequest request,
+                          HttpServletResponse response) throws IOException {
+        response.setContentType("text/html; charset=utf-8");
+        PrintWriter out = response.getWriter();
+        if (!blogText.equals("") && request.getSession(false) != null && !blogText.trim().equals("")) {
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 格式化类型
             String currentTime = sf.format(new Date().getTime());// 获取当前日期和时间
             Timestamp ct = Timestamp.valueOf(currentTime);// 将 String 类型转为 Timestamp 类型
@@ -56,9 +61,9 @@ public class BlogController {
             blog.setBlogText(blogText);
             blog.setDateTime(ct);
             blogService.insertBlog(blog);
-            return "redirect:/index";
+            out.write("<script> alert('发表成功！');window.location.href='/index';</script>");
         }else {
-            return "redirect:/write";
+            out.write("<script> alert('发表失败，请检查博客！');window.location.href='/write';</script>");
         }
     }
 

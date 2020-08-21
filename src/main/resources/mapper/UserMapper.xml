@@ -21,7 +21,15 @@
     </select>
 <!--添加用户    -->
     <insert id="addUser" parameterType="com.blog.entity.User">
-        insert into user (userId, userName, userPassword, sex)
-        values (#{userId, jdbcType=VARCHAR}, #{userName, jdbcType=VARCHAR}, #{userPassword, jdbcType=VARCHAR}, #{sex, jdbcType=TINYINT})
+        insert into user (userId, userPassword)
+        values (#{userId, jdbcType=VARCHAR}, #{userPassword, jdbcType=VARCHAR})
     </insert>
+<!--修改用户信息    -->
+<update id="changeUserData" parameterType="com.blog.entity.User">
+    update user set
+    userPassword = #{userPassword, jdbcType=VARCHAR},
+    school = #{school, jdbcType=VARCHAR},
+    introduction = #{introduction, jdbcType=VARCHAR}
+    where userId = #{userId}
+</update>
 </mapper>

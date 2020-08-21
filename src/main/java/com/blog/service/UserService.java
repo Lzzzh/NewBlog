@@ -11,4 +11,7 @@ public interface UserService {
 
     //验证用户密码
     boolean ifPassword(String userId, String userPassword);
+
+    //修改用户信息
+    void changeUserData(User user);
 }

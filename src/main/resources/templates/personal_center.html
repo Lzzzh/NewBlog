@@ -48,26 +48,34 @@
 	</div>
 	<div class="container">
 		<div class="personal">
-			<form action="" style="width: 98%">
+			<form action="/user/changedata" name="changedata" method="post" style="width: 98%" onsubmit="return registCheck()">
 				<ul>
 					<li>
-						用户名  <input type="text">  性别  男<input name="userType" type="radio" value="" checked="checked"/>女<input name="userType" type="radio" value="" />  
-					</li>
-					<li> 学校  <input type="text">
+						修改密码  <input type="password" name="userpassword">
 					</li>
 					<li>
-						修改密码  <input type="text"> 
+						确认密码  <input type="password" name="userpassword_check">
+					</li>
+					<li> 学校  <input type="text" name="school">
 					</li>
 					<li>
-						确认密码  <input type="text"> 
-					</li>
-					<li>
-						个人简介<br>  <input type="text" style="width: 600px;height: 150px;"> 
+						个人简介<br>  <input type="text" name="introduction" style="width: 600px;height: 150px;">
 					</li>
 				</ul>
-				<button id="button-write">提交</button>
+				<input id="button-write" type="submit" value="提交">
 			</form>
 		</div>
 	</div>
+	<script type="text/javascript">
+		function registCheck()
+		{
+			if (document.registdata.userpassword.value !== document.registdata.userpassword_check.value){
+				alert("两次输入的密码不一致！");
+				return false;
+			}
+			return true;
+		}
+
+	</script>
 </body>
 </html>

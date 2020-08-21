@@ -18,12 +18,19 @@ public class UserServiceImpl implements UserService {
         userMapper.addUser(user);
     }
 
+    @Override
     public boolean ifUser(String userId) {
         return userMapper.ifUser(userId) == 0;
     }
 
+    @Override
     public boolean ifPassword(String userId, String userPassword) {
         return userMapper.ifPassword(userId, userPassword) == 1;
+    }
+
+    @Override
+    public void changeUserData(User user) {
+        userMapper.changeUserData(user);
     }
 
 }
