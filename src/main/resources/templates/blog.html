@@ -47,7 +47,7 @@
 		<h2 th:text="${blogdata.blogTitle}"></h2>
 		<br>
 		<h5>作者：<span th:text="${blogdata.userId}"></span></h5>
-		<h5>发布时间：<span th:text="${blogdata.dateTime}"></span></h5>
+		<h5>发布时间：<span id="blogDateTime" th:text="${blogdata.dateTime}"></span></h5>
 		<br>
 		<p th:text="${blogdata.blogText}"></p>
 		<br>
@@ -55,16 +55,36 @@
 		<br>
 		<br><br><br><br><br>
 		<div class="comment-count" style="font-size: 14px;color: grey;">
-			阅读量 <span>10w+</span>
 		</div>
 	</div>
 	<div class="container-comment">
-		<form action="" style="margin: 0 auto;width: 80%">
-			<input type="text" id="input-comment" placeholder="说点什么吧">
-			<button id="button-comment">发表评论</button>
+		<form action="/blog/addcomment" method="post" name="commentdata" style="margin: 0 auto;width: 80%" onsubmit="return commentCheck()">
+			<input type="text" id="input-comment" name="commenttext" placeholder="说点什么吧">
+			<input type="hidden" name="blogTime" id="time">
+			<button id="button-comment" type="submit">发表评论</button>
 		</form>
 	</div>
-
-
+	<div class="item">
+		<div class="comment" th:each="comment:${blogcomment}">
+			<h3><a th:text="${comment.commentUserId}"></a>&nbsp;</h3><a th:text="${comment.blogComment}"></a>
+		</div>
+	</div>
+<script type="text/javascript">
+	// window.onload = function () {
+	// 	var blogDateTime = sessionStorage.getItem("blogDateTime");
+	// 	document.getElementById("time").value = blogDateTime;
+	// }
+	function commentCheck() {
+		if (document.commentdata.commenttext.value=="") {
+			alert("输入的评论为空！");
+			return false
+		}
+		return true;
+	}
+</script>
+<script th:inline="javascript">
+	document.getElementById("time").value  = [[${blogdata.dateTime}]]
+	 // sessionStorage.setItem("blogDateTime", v);
+</script>
 </body>
 </html>

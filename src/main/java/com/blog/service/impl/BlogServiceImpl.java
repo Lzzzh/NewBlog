@@ -15,14 +15,17 @@ public class BlogServiceImpl implements BlogService{
     @Autowired
     private BlogMapper blogMapper;
 
+    @Override
     public void insertBlog(Blog blog) {
         blogMapper.insertBlog(blog);
     }
 
+    @Override
     public List<Blog> getBlogList() {
         return blogMapper.getBlogList();
     }
 
+    @Override
     public List<Blog> getOneBlog(Timestamp dateTime) {
         return blogMapper.getOneBlog(dateTime);
     }

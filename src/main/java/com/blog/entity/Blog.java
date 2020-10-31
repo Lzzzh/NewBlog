@@ -2,11 +2,23 @@ package com.blog.entity;
 
 import java.sql.Timestamp;
 
+/**
+ * @author haoge
+ */
 public class Blog {
+    private int id;
     private String userId;
     private String blogText;
     private String blogTitle;
     private Timestamp dateTime;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getUserId() {
         return userId;

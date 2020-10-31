@@ -1,8 +1,10 @@
 package com.blog.controller;
 
 import com.blog.entity.Blog;
+import com.blog.entity.Comment;
 import com.blog.mapper.BlogMapper;
 import com.blog.service.BlogService;
+import com.blog.service.CommentService;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -20,9 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.PrintWriter;
+import java.io.*;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -35,13 +35,36 @@ public class BlogController {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private CommentService commentService;
+
     @RequestMapping("/{dateTime}")
     public String showBlog(@PathVariable(name = "dateTime")String time, Model model) {
         String dateTimeStr = time.split("\\.")[0];
         Timestamp dateTime = Timestamp.valueOf(dateTimeStr);
         List<Blog> list = blogService.getOneBlog(dateTime);
+        int blogId = list.get(0).getId();
+        List<Comment> commentList = commentService.getBlogComments(blogId);
         model.addAttribute("blogdata", list.get(0));
+        model.addAttribute("blogcomment", commentList);
         return "blog";
+    }
+    @RequestMapping("/addcomment")
+    public void addComment(@RequestParam("commenttext") String blogComment,
+                           @RequestParam("blogTime") String time,
+                           HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html; charset=utf-8");
+        PrintWriter out = response.getWriter();
+        String dateTimeStr = time.split("\\.")[0].replace("T", " ");
+        Timestamp dateTime = Timestamp.valueOf(dateTimeStr);
+        List<Blog> list = blogService.getOneBlog(dateTime);
+        int blogId = list.get(0).getId();
+        Comment comment = new Comment();
+        comment.setBlogId(blogId);
+        comment.setBlogComment(blogComment);
+        comment.setCommentUserId(request.getSession().getAttribute("loginUser").toString());
+        commentService.insertBlogComments(comment);
+        out.write("<script>alert('发表成功！');window.location.href='/index';</script>");
     }
 
     @RequestMapping("/addblog")
@@ -51,6 +74,8 @@ public class BlogController {
                           HttpServletResponse response) throws IOException {
         response.setContentType("text/html; charset=utf-8");
         PrintWriter out = response.getWriter();
+        InputStream in;
+
         if (!blogText.equals("") && request.getSession(false) != null && !blogText.trim().equals("")) {
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");// 格式化类型
             String currentTime = sf.format(new Date().getTime());// 获取当前日期和时间

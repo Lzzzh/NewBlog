@@ -51,7 +51,6 @@
 			<a th:if="${#strings.length(list.blogText) lt 200}"><p th:text="${list.blogText}"></p></a>
 
 			<a th:if="${#strings.length(list.blogText) ge 200}"><p th:text="${#strings.substring(list.blogText, 0, 200)}"></p></a>
-
 		</div>
 	</div>
 
